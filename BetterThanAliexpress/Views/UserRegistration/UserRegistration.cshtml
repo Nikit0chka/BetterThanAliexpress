@@ -3,35 +3,43 @@
 }
 
 <h2>@ViewData["Title"]</h2>
+<script src="js/UserRegistration.js"></script>
 
-<form method="post">
+<form method="post" id="UserRegistrationForm">
     <div>
         <label for="FirstName">Name:</label>
         <input id="FirstName" type="text" name="FirstName" required/>
+        <span id="FirstNameError" style="color: red;"></span>
     </div>
     <div>
         <label for="LastName">Surname:</label>
         <input id="LastName" type="text" name="LastName" required/>
+        <span id="LastNameError" style="color: red;"></span>
     </div>
     <div>
         <label for="Email">Email:</label>
         <input id="Email" type="email" name="Email" required/>
+        <span id="EmailError" style="color: red;"></span>
     </div>
     <div>
         <label for="BirthDate">Birth date:</label>
         <input id="BirthDate" type="date" name="BirthDate" required/>
+        <span id="BirthDateError" style="color: red;"></span>
     </div>
     <div>
         <label for="Username">Login:</label>
         <input id="Username" type="text" name="Username" required/>
+        <span id="UsernameError" style="color: red;"></span>
     </div>
     <div>
         <label for="Password">Password:</label>
         <input id="Password" type="password" name="Password" required/>
+        <span id="PasswordError" style="color: red;"></span>
     </div>
     <div>
         <label for="SubmitPassword">Submit password:</label>
         <input id="SubmitPassword" type="password" name="SubmitPassword" required/>
+        <span id="SubmitPasswordError" style="color: red;"></span>
     </div>
-    <button type="submit">Registration</button>
+    <button id="Submit" type="submit">Registration</button>
 </form>
