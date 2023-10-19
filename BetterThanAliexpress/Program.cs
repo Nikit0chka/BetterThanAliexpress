@@ -28,7 +28,7 @@ app.UseEndpoints(endpoints =>
 
     endpoints.MapControllerRoute(
         name: "UserRegistration",
-        pattern: "{controller=UserRegistration}/{action=SDf}");
+        pattern: "{controller=UserRegistration}/{action=UserRegistration}");
 });
 
 
