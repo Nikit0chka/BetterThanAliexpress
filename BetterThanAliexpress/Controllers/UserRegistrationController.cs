@@ -13,7 +13,7 @@ public class UserRegistrationController : Controller
         _logger = logger;
     }
 
-    public IActionResult SDf()
+    public IActionResult UserRegistration()
     {
         return View();
     }
