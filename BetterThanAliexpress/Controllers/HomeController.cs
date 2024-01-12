@@ -4,28 +4,14 @@ using BetterThanAliexpress.Models;
 
 namespace BetterThanAliexpress.Controllers;
 
-public class HomeController : Controller
-{
-    private readonly ILogger<HomeController> _logger;
+public sealed class HomeController : Controller {
+    public IActionResult Index() => View();
 
-    public HomeController(ILogger<HomeController> logger)
-    {
-        _logger = logger;
-    }
+    public IActionResult Privacy() => View();
 
-    public IActionResult Index()
-    {
-        return View();
-    }
+    public IActionResult NavigateToUserRegistration() => RedirectToAction(actionName: "UserRegistration", controllerName: "UserRegistration");
 
-    public IActionResult Privacy()
-    {
-        return View();
-    }
+    public IActionResult NavigateToUserAuthorization() => RedirectToAction(actionName: "UserAuthorization", controllerName: "UserAuthorization");
 
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
-    {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-    }
+    public IActionResult Error() => View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
 }

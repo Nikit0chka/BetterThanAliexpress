@@ -1,9 +1,20 @@
-WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
+using BetterThanAliexpress.EntityFramework;
+
+using Microsoft.EntityFrameworkCore;
+
+using System.Configuration;
+
+var builder = WebApplication.CreateBuilder(args);
+var asdf = new DataBaseContext();
+
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<DataBaseContext>();
 
-WebApplication app = builder.Build();
+
+
+var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -21,15 +32,18 @@ app.UseRouting();
 app.UseAuthorization();
 
 app.UseEndpoints(endpoints =>
-{
-    endpoints.MapControllerRoute(
-        name: "default",
-        pattern: "{controller=Home}/{action=Index}/{id?}");
+                 {
+                     endpoints.MapControllerRoute(
+                                                  name: "default",
+                                                  pattern: "{controller=Home}/{action=Index}/{id?}");
 
-    endpoints.MapControllerRoute(
-        name: "UserRegistration",
-        pattern: "{controller=UserRegistration}/{action=UserRegistration}");
-});
+                     endpoints.MapControllerRoute(
+                                                  name: "UserRegistration",
+                                                  pattern: "{controller=UserRegistration}/{action=UserRegistration}");
 
+                     endpoints.MapControllerRoute(
+                                                  name: "UserAuthorization",
+                                                  pattern: "{controller=UserAuthorization}/{action=UserAuthorization}");
+                 });
 
 app.Run();
