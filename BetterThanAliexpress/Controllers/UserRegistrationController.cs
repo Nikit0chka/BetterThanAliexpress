@@ -1,12 +1,13 @@
-﻿using System.Diagnostics;
+﻿namespace BetterThanAliexpress.Controllers;
+
+using EntityFramework;
+using EntityFramework.DataBaseManagers;
 
 using Microsoft.AspNetCore.Mvc;
 
-using BetterThanAliexpress.Models;
+using Models;
 
-namespace BetterThanAliexpress.Controllers;
-
-using EntityFramework.DataBaseManagers;
+using System.Diagnostics;
 
 public sealed class UserRegistrationController : Controller
 {
@@ -17,27 +18,33 @@ public sealed class UserRegistrationController : Controller
 
     [HttpPost] public async Task<IActionResult> UserRegistration(UserRegistrationModel userRegistrationModel)
     {
-        //var buyers = new DataBaseContext().Buyers.ToList();
+        var buyers = new DataBaseContext().Buyers.ToList();
 
         if (!ModelState.IsValid)
             return View();
 
-        // if (buyers.Any(buyer => buyer.Login == userRegistrationModel.Login)){
-        //     ModelState.AddModelError("Login", "User with this login is already registered");
-        //     return View();
-        // }
-        //
-        // if (buyers.Any(buyer => buyer.PhoneNumber == userRegistrationModel.PhoneNumber)){
-        //     ModelState.AddModelError("PhoneNumber", "User with this phone number is already registered");
-        //     return View();
-        // }
-        //
-        // if (buyers.Any(buyer => buyer.Email == userRegistrationModel.Email)){
-        //     ModelState.AddModelError("Email", "User with this email is already registered");
-        //     return View();
-        // }
+        if (buyers.Any(buyer => buyer.Login == userRegistrationModel.Login))
+        {
+            ModelState.AddModelError(key: "Login", errorMessage: "User with this login is already registered");
 
-        BuyerManager.RegistrationBuyer(name: userRegistrationModel.Name, surname: userRegistrationModel.Surname, login: userRegistrationModel.Login, password: userRegistrationModel.Password, dateOfBirthday: userRegistrationModel.DateOfBirthday, email: userRegistrationModel.Email, phoneNumber: userRegistrationModel.PhoneNumber);
+            return View();
+        }
+
+        if (buyers.Any(buyer => buyer.PhoneNumber == userRegistrationModel.PhoneNumber))
+        {
+            ModelState.AddModelError(key: "PhoneNumber", errorMessage: "User with this phone number is already registered");
+
+            return View();
+        }
+
+        if (buyers.Any(buyer => buyer.Email == userRegistrationModel.Email))
+        {
+            ModelState.AddModelError(key: "Email", errorMessage: "User with this email is already registered");
+
+            return View();
+        }
+
+        await BuyerManager.RegistrationBuyer(name: userRegistrationModel.Name, surname: userRegistrationModel.Surname, login: userRegistrationModel.Login, password: userRegistrationModel.Password, dateOfBirthday: userRegistrationModel.DateOfBirthday, email: userRegistrationModel.Email, phoneNumber: userRegistrationModel.PhoneNumber);
 
         return RedirectToAction(actionName: "UserMainPage", controllerName: "UserMainPage");
     }

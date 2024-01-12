@@ -1,10 +1,13 @@
-﻿using System.Diagnostics;
+﻿namespace BetterThanAliexpress.Controllers;
+
 using Microsoft.AspNetCore.Mvc;
-using BetterThanAliexpress.Models;
 
-namespace BetterThanAliexpress.Controllers;
+using Models;
 
-public sealed class HomeController : Controller {
+using System.Diagnostics;
+
+public sealed class HomeController : Controller
+{
     public IActionResult Index() => View();
 
     public IActionResult Privacy() => View();

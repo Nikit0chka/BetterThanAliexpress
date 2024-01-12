@@ -1,18 +1,10 @@
 using BetterThanAliexpress.EntityFramework;
 
-using Microsoft.EntityFrameworkCore;
-
-using System.Configuration;
-
 var builder = WebApplication.CreateBuilder(args);
-var asdf = new DataBaseContext();
-
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<DataBaseContext>();
-
-
 
 var app = builder.Build();
 

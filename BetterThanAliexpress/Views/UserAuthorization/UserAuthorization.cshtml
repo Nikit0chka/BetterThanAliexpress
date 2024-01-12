@@ -4,7 +4,7 @@
 
 <h2>@ViewData["Title"]</h2>
 
-@model BetterThanAliexpress.Models.UserAuthorizationModel
+@model UserAuthorizationModel
 
 <form asp-controller="UserAuthorization" asp-action="UserAuthorization">
     <div>
@@ -17,6 +17,6 @@
         <input asp-for="Password"/>
         <span asp-validation-for="Password"></span>
     </div>
-    
+
     <button type="submit">Authorization</button>
 </form>

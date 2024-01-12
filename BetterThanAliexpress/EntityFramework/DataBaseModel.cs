@@ -1,7 +1,7 @@
 ﻿namespace BetterThanAliexpress.EntityFramework;
 
 /// <summary>
-/// DataBase class for buyer
+///     DataBase class for buyer
 /// </summary>
 public sealed class Buyer
 {
@@ -40,9 +40,9 @@ public sealed class Product
 
 public sealed class ProductCategory
 {
-    public int Id { get; set; }
     public required string Name;
     public ICollection<Product>? Products;
+    public int Id { get; set; }
 }
 
 public sealed class Admin
