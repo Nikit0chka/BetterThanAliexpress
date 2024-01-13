@@ -5,6 +5,9 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<DataBaseContext>();
+//
+// var asdf = new DataBaseContext();
+// asdf.Database.EnsureCreated();
 
 var app = builder.Build();
 
@@ -35,7 +38,17 @@ app.UseEndpoints(endpoints =>
 
                      endpoints.MapControllerRoute(
                                                   name: "UserAuthorization",
-                                                  pattern: "{controller=UserAuthorization}/{action=UserAuthorization}");
+                                                  pattern: "{controller=Authorization}/{action=Authorization}");
+
+                     endpoints.MapControllerRoute(
+                                                  name: "UserMainPage",
+                                                  pattern: "{controller=UserMainPage}/{action=UserMainPage}");
+
+                     endpoints.MapControllerRoute(name: "UserCart",
+                                                  pattern: "{controller=UserCart}/{action=UserCart}");
+
+                     endpoints.MapControllerRoute(name: "AdminMainPage",
+                                                  pattern: "{controller=AdminMainPage}/{action=AdminMainPage}");
                  });
 
 app.Run();

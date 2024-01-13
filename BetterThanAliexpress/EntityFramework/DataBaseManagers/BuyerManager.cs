@@ -1,8 +1,10 @@
 ﻿namespace BetterThanAliexpress.EntityFramework.DataBaseManagers;
 
+using Microsoft.EntityFrameworkCore;
+
 internal static class BuyerManager
 {
-    internal static async Task RegistrationBuyer(string name, string surname, string login, string password, DateTime dateOfBirthday, string email, string phoneNumber)
+    internal static async Task RegistrationBuyerAsync(string name, string surname, string login, string password, DateTime dateOfBirthday, string email, string phoneNumber)
     {
         var newBuyer = new Buyer
                        {
@@ -18,5 +20,21 @@ internal static class BuyerManager
         await using var dbContext = new DataBaseContext();
         await dbContext.Buyers.AddAsync(newBuyer);
         await dbContext.SaveChangesAsync();
+    }
+
+    internal static async Task<bool> IsBuyerInDataBaseAsync(string login)
+    {
+        await using var dbContext = new DataBaseContext();
+
+        return await dbContext.Buyers.AnyAsync(buyer => buyer.Login == login || buyer.PhoneNumber == login || buyer.Email == login);
+    }
+
+    internal static async Task<bool> IsBuyerPasswordCorrectAsync(string login, string password)
+    {
+        await using var dbContext = new DataBaseContext();
+
+        var buyerWithLogin = await dbContext.Buyers.FirstOrDefaultAsync(buyer => buyer.Login == login || buyer.PhoneNumber == login || buyer.Email == login);
+
+        return buyerWithLogin?.Password == password;
     }
 }

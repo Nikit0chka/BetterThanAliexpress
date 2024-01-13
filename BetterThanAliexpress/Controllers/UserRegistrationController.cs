@@ -44,8 +44,8 @@ public sealed class UserRegistrationController : Controller
             return View();
         }
 
-        await BuyerManager.RegistrationBuyer(name: userRegistrationModel.Name, surname: userRegistrationModel.Surname, login: userRegistrationModel.Login, password: userRegistrationModel.Password, dateOfBirthday: userRegistrationModel.DateOfBirthday, email: userRegistrationModel.Email, phoneNumber: userRegistrationModel.PhoneNumber);
+        await BuyerManager.RegistrationBuyerAsync(name: userRegistrationModel.Name, surname: userRegistrationModel.Surname, login: userRegistrationModel.Login, password: userRegistrationModel.Password, dateOfBirthday: userRegistrationModel.DateOfBirthday, email: userRegistrationModel.Email, phoneNumber: userRegistrationModel.PhoneNumber);
 
-        return RedirectToAction(actionName: "UserMainPage", controllerName: "UserMainPage");
+        return RedirectToAction(actionName: "Authorization", controllerName: "Authorization");
     }
 }
