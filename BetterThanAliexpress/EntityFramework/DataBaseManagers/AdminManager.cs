@@ -13,10 +13,11 @@ internal static class AdminManager
         await dbContext.SaveChangesAsync();
     }
 
-    internal static async Task<bool> IsAdminInDataBaseAsync(string login, string password)
+    internal static async Task<bool> IsAdminPasswordCorrectAsync(string login, string password)
     {
         await using var dbContext = new DataBaseContext();
+        var admin = await dbContext.Admins.FirstOrDefaultAsync(admin => admin.Login == login);
 
-        return await dbContext.Admins.AnyAsync(admin => admin.Login == login && admin.Password == password);
+        return admin != null && admin.Password == password;
     }
 }

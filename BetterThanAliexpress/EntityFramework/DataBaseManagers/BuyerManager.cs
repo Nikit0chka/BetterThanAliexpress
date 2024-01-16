@@ -35,6 +35,6 @@ internal static class BuyerManager
 
         var buyerWithLogin = await dbContext.Buyers.FirstOrDefaultAsync(buyer => buyer.Login == login || buyer.PhoneNumber == login || buyer.Email == login);
 
-        return buyerWithLogin?.Password == password;
+        return buyerWithLogin != null && buyerWithLogin.Password == password;
     }
 }

@@ -5,9 +5,11 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<DataBaseContext>();
-//
+
 // var asdf = new DataBaseContext();
+// asdf.Admins.Add(new Admin { Password = "Admin", Login = "Admin" });
 // asdf.Database.EnsureCreated();
+// asdf.SaveChanges();
 
 var app = builder.Build();
 
@@ -21,34 +23,29 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
 app.UseRouting();
-
 app.UseAuthorization();
 
-app.UseEndpoints(endpoints =>
-                 {
-                     endpoints.MapControllerRoute(
-                                                  name: "default",
-                                                  pattern: "{controller=Home}/{action=Index}/{id?}");
+app.MapControllerRoute(name: "default",
+                       pattern: "{controller=Home}/{action=Index}/{id?}");
 
-                     endpoints.MapControllerRoute(
-                                                  name: "UserRegistration",
-                                                  pattern: "{controller=UserRegistration}/{action=UserRegistration}");
+app.MapControllerRoute(name: "UserRegistration",
+                       pattern: "{controller=UserRegistration}/{action=UserRegistration}");
 
-                     endpoints.MapControllerRoute(
-                                                  name: "UserAuthorization",
-                                                  pattern: "{controller=Authorization}/{action=Authorization}");
+app.MapControllerRoute(name: "UserAuthorization",
+                       pattern: "{controller=Authorization}/{action=Authorization}");
 
-                     endpoints.MapControllerRoute(
-                                                  name: "UserMainPage",
-                                                  pattern: "{controller=UserMainPage}/{action=UserMainPage}");
+app.MapControllerRoute(name: "UserMainPage",
+                       pattern: "{controller=UserMainPage}/{action=UserMainPage}");
 
-                     endpoints.MapControllerRoute(name: "UserCart",
-                                                  pattern: "{controller=UserCart}/{action=UserCart}");
+app.MapControllerRoute(name: "UserCart",
+                       pattern: "{controller=UserCart}/{action=UserCart}");
 
-                     endpoints.MapControllerRoute(name: "AdminMainPage",
-                                                  pattern: "{controller=AdminMainPage}/{action=AdminMainPage}");
-                 });
+app.MapControllerRoute(name: "AdminMainPage",
+                       pattern: "{controller=AdminMainPage}/{action=AdminMainPage}")
+;
+
+app.MapControllerRoute(name: "SellerMainPage",
+                       pattern: "{controller=SellerMainPage}/{action=SellerMainPage}");
 
 app.Run();

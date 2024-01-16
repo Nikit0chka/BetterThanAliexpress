@@ -12,9 +12,9 @@ public sealed class HomeController : Controller
 
     public IActionResult Privacy() => View();
 
-    public IActionResult NavigateToUserRegistration() => RedirectToAction(actionName: "UserRegistration", controllerName: "UserRegistration");
+    public IActionResult NavigateToUserRegistration() => RedirectToAction(actionName: nameof(UserRegistrationController.UserRegistration), controllerName: "UserRegistration");
 
-    public IActionResult NavigateToUserAuthorization() => RedirectToAction(actionName: "Authorization", controllerName: "Authorization");
+    public IActionResult NavigateToUserAuthorization() => RedirectToAction(actionName: nameof(AuthorizationController.Authorization), controllerName: "Authorization");
 
     public IActionResult Error() => View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
 }

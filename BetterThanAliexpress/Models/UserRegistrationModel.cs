@@ -6,7 +6,7 @@ public sealed class UserRegistrationModel
 {
     public required string Name { get; set; }
     public required string Surname { get; set; }
-    [EmailAddress(ErrorMessage = "Not correct email address")] public required string Email { get; set; }
+    [EmailAddress] public required string Email { get; set; }
     public required DateTime DateOfBirthday { get; set; }
     public required string Login { get; set; }
 
@@ -15,5 +15,5 @@ public sealed class UserRegistrationModel
 
     public required string SubmitPassword { get; set; }
 
-    [Phone(ErrorMessage = "Phone number is not valid")] public required string PhoneNumber { get; set; }
+    [Phone] public required string PhoneNumber { get; set; }
 }
