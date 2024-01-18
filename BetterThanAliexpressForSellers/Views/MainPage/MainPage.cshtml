@@ -1,0 +1,27 @@
+﻿@model List<DataBase.Product>
+
+<div>
+    <table>
+        <tbody>
+        @foreach (var product in Model)
+        {
+            <tr>
+                <td>@product.Name</td>
+                <td>@product.Price.ToString()</td>
+                <td>@product.ProductCategory.Name</td>
+                <td>@product.Description</td>
+
+                <td>
+                    <button>Удалить</button>
+                    <button>Изменить</button>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
+<div>
+    <button>
+        <a asp-action="AddProduct" asp-controller="MainPage" asp-id="">Добавить</a>
+    </button>
+</div>

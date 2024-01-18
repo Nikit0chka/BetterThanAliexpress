@@ -1,7 +1,7 @@
 ﻿namespace BetterThanAliexpress.Controllers;
 
-using EntityFramework;
-using EntityFramework.DataBaseManagers;
+using DataBase;
+using DataBase.DataBaseManagers;
 
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -11,7 +11,7 @@ public sealed class AdminMainPageController : Controller
     public async Task<IActionResult> AdminMainPage(string login, string password)
     {
         if (!await AdminManager.IsAdminPasswordCorrectAsync(login: login, password: password))
-            return RedirectToAction(actionName: "UserMainPage", controllerName: "UserMainPage");
+            return RedirectToAction(actionName: "MainPage", controllerName: "MainPage");
 
         return View();
     }

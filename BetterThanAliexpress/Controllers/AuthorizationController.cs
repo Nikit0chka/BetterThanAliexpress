@@ -1,6 +1,6 @@
 ﻿namespace BetterThanAliexpress.Controllers;
 
-using EntityFramework.DataBaseManagers;
+using DataBase.DataBaseManagers;
 
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,10 +14,7 @@ public sealed class AuthorizationController : Controller
     {
         if (await AdminManager.IsAdminPasswordCorrectAsync(login: authorizationModel.Login, password: authorizationModel.Password))
             return RedirectToAction(actionName: nameof(AdminMainPageController.AdminMainPage), controllerName: "AdminMainPage", routeValues: new { login = authorizationModel.Login, password = authorizationModel.Password });
-
-        if (await SellerManager.IsSellerPasswordCorrectAsync(login: authorizationModel.Login, password: authorizationModel.Password))
-            return RedirectToAction(actionName: nameof(SellerMainPageController.SellerMainPage), controllerName: "SellerMainPage", routeValues: new { login = authorizationModel.Login, password = authorizationModel.Password });
-
+       
         if (!await BuyerManager.IsBuyerInDataBaseAsync(authorizationModel.Login))
             ModelState.AddModelError(key: "Login", errorMessage: "User with this login not registered");
 
@@ -27,6 +24,6 @@ public sealed class AuthorizationController : Controller
         if (!ModelState.IsValid)
             return View();
 
-        return RedirectToAction(actionName: "UserMainPage", controllerName: "UserMainPage", routeValues: new { userLogin = authorizationModel.Login, userPassword = authorizationModel.Password });
+        return RedirectToAction(actionName: nameof(MainPageController.MainPage), controllerName: "MainPage");
     }
 }

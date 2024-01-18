@@ -1,0 +1,22 @@
+﻿@{
+    ViewData["Title"] = "UserAuthorization";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+@model AuthorizationModel
+
+<form asp-controller="Authorization" asp-action="Authorization">
+    <div>
+        <label asp-for="Login">Login:</label>
+        <input asp-for="Login"/>
+        <span asp-validation-for="Login"></span>
+    </div>
+    <div>
+        <label asp-for="Password">Password:</label>
+        <input asp-for="Password"/>
+        <span asp-validation-for="Password"></span>
+    </div>
+
+    <button type="submit">Authorization</button>
+</form>

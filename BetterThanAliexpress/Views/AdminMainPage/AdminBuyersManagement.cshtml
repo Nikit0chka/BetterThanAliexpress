@@ -2,7 +2,7 @@
     Layout = null;
 }
 
-@model List<BetterThanAliexpress.EntityFramework.Buyer>
+@model List<DataBase.Buyer>
 
 <table>
     <thead>
@@ -22,7 +22,7 @@
     @foreach (var buyer in Model)
     {
         <tr>
-            <td>@buyer.Id</td>
+            <td>@buyer.Id.ToString()</td>
             <td>@buyer.Login</td>
             <td>@buyer.Password</td>
             <td>@buyer.Name</td>

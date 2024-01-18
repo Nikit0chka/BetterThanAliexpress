@@ -1,0 +1,66 @@
+﻿@{
+    ViewData["Title"] = "SellerRegistration";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+@model RegistrationModel
+
+<form asp-controller="Registration" asp-action="Registration">
+    <div>
+        <label asp-for="Name">Name:</label>
+        <input asp-for="Name"/>
+        <span asp-validation-for="Name"></span>
+    </div>
+    <div>
+        <label asp-for="Inn">Inn:</label>
+        <input asp-for="Inn"/>
+        <span asp-validation-for="Inn"></span>
+    </div>
+    <div>
+        <label asp-for="Email">Email:</label>
+        <input asp-for="Email"/>
+        <span asp-validation-for="Email"></span>
+    </div>
+    <div>
+        <label asp-for="PhoneNumber">Phone number:</label>
+        <input asp-for="PhoneNumber"/>
+        <span asp-validation-for="PhoneNumber"></span>
+    </div>
+    <div>
+        <label asp-for="CompanyAddress">Company address:</label>
+        <input asp-for="CompanyAddress"/>
+        <span asp-validation-for="CompanyAddress"></span>
+    </div>
+    <div>
+        <label asp-for="Login">Login:</label>
+        <input asp-for="Login"/>
+        <span asp-validation-for="Login"></span>
+    </div>
+    <div>
+        <label asp-for="Password">Password:</label>
+        <input asp-for="Password"/>
+        <span asp-validation-for="Password"></span>
+    </div>
+    <div>
+        <label asp-for="SubmitPassword">Submit password:</label>
+        <input asp-for="SubmitPassword"/>
+        <span asp-validation-for="SubmitPassword"></span>
+    </div>
+    <div>
+        <label asp-for="PassportPhoto">Passport photo</label>
+        <input asp-for="PassportPhoto"/>
+        <span asp-validation-for="PassportPhoto"></span>
+    </div>
+    <div>
+        <label asp-for="InnPhoto">Inn photo</label>
+        <input asp-for="InnPhoto"/>
+        <span asp-validation-for="InnPhoto"></span>
+    </div>
+    <div>
+        <label asp-for="CompanyCertificatePhoto">Company certificate</label>
+        <input asp-for="CompanyCertificatePhoto"/>
+        <span asp-validation-for="CompanyCertificatePhoto"></span>
+    </div>
+    <button type="submit">Registration</button>
+</form>
