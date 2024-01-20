@@ -51,7 +51,7 @@ public static class SellerManager
     {
         await using var dbContext = new DataBaseContext();
 
-        return await dbContext.Sellers.FirstOrDefaultAsync(seller => seller.Login == login || seller.PhoneNumber == login || seller.Email == login || seller.Inn == login);
+        return await dbContext.Sellers.Include(seller => seller.Products).Include(seller => seller.Products).FirstOrDefaultAsync(seller => seller.Login == login || seller.PhoneNumber == login || seller.Email == login || seller.Inn == login);
     }
 
     public static async Task<Seller?> GetSellerAsync(int id)
@@ -59,30 +59,5 @@ public static class SellerManager
         await using var dbContext = new DataBaseContext();
 
         return await dbContext.Sellers.FirstOrDefaultAsync(seller => seller.Id == id);
-    }
-
-    public static async Task AddNewProductAsync(int id)
-    {
-        await using var dbContext = new DataBaseContext();
-
-        var seller = await SellerManager.GetSellerAsync(id);
-
-        if (seller is null)
-            throw new Exception("there are no seller with this id");
-
-        var newProduct = new Product
-                         {
-                         Count = 0,
-                         Description = "0",
-                         Name = "",
-                         Price = 0,
-                         Seller = seller,
-                         ProductCategory = dbContext.ProductCategories.ToList()[0]
-                         };
-
-        seller.Products.Add(newProduct);
-        await dbContext.Products.AddAsync(newProduct);
-        
-        await dbContext.SaveChangesAsync();
     }
 }

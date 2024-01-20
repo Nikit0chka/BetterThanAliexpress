@@ -9,7 +9,6 @@ using Microsoft.AspNetCore.Mvc;
 
 using Models;
 
-using System.Globalization;
 using System.Security.Claims;
 
 public sealed class RegistrationController : Controller

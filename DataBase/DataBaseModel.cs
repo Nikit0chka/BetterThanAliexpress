@@ -38,14 +38,15 @@ public sealed class Product
     public required string Description { get; set; }
     public required int Count { get; set; }
     public required int Price { get; set; }
+    public int ProductCategoryId { get; set; }
     public required ProductCategory ProductCategory { get; set; }
 }
 
 public sealed class ProductCategory
 {
-    public required string Name;
     public ICollection<Product> Products = new List<Product>();
     public int Id { get; set; }
+    public required string Name { get; set; }
 }
 
 public sealed class Admin

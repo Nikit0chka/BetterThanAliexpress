@@ -22,6 +22,40 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+// var asdf = new DataBaseContext();
+// asdf.Database.EnsureCreated();
+// asdf.Admins.Add(new Admin { Password = "Admin", Login = "Admin" });
+//
+// asdf.Sellers.Add(new Seller()
+//                  {
+//                  CompanyAddress = "Seller",
+//                  Email = "Seller",
+//                  Inn = "Seller",
+//                  Login = "Seller",
+//                  Name = "Seller",
+//                  Password = "Seller",
+//                  PhoneNumber = "Seller",
+//                  IsAdminConfirmed = false,
+//                  Products = new List<Product>()
+//                  });
+//
+// asdf.Buyers.Add(new Buyer()
+//                 {
+//                 DateOfBirthday = DateTime.Now,
+//                 Email = "Buyer",
+//                 Login = "Buyer",
+//                 Name = "Buyer",
+//                 Password = "Buyer",
+//                 Surname = "Buyer",
+//                 PhoneNumber = "Buyer",
+//                 ProductBasket = new List<Product>()
+//                 });
+//
+// asdf.ProductCategories.Add(new ProductCategory { Name = "alo", Products = new List<Product>() });
+//
+// asdf.SaveChanges();
+
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
@@ -41,5 +75,8 @@ app.MapControllerRoute(name: "Authorization",
 
 app.MapControllerRoute(name: "Registration",
                        pattern: "{controller=Registration}/{action=Registration}");
+
+app.MapControllerRoute(name: "ProductMange",
+                       pattern: "{controller=ProductManage}/{action=ManageProduct}");
 
 app.Run();

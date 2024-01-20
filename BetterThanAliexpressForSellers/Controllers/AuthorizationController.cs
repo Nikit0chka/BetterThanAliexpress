@@ -17,10 +17,10 @@ public sealed class AuthorizationController : Controller
 
     [HttpPost] public async Task<IActionResult> Authorization(AuthorizationModel authorizationModel)
     {
-        if (!await BuyerManager.IsBuyerInDataBaseAsync(authorizationModel.Login))
+        if (!await SellerManager.IsSellerInDataBaseAsync(authorizationModel.Login))
             ModelState.AddModelError(key: "Login", errorMessage: "Seller with this login not registered");
 
-        if (!await BuyerManager.IsBuyerPasswordCorrectAsync(login: authorizationModel.Login, password: authorizationModel.Password))
+        if (!await SellerManager.IsSellerPasswordCorrectAsync(login: authorizationModel.Login, password: authorizationModel.Password))
             ModelState.AddModelError(key: "Password", errorMessage: "Password is not correct");
 
         if (!ModelState.IsValid)

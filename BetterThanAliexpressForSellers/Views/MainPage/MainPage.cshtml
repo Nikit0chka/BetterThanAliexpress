@@ -6,14 +6,19 @@
         @foreach (var product in Model)
         {
             <tr>
+                <td>@product.Id</td>
                 <td>@product.Name</td>
                 <td>@product.Price.ToString()</td>
                 <td>@product.ProductCategory.Name</td>
                 <td>@product.Description</td>
 
                 <td>
-                    <button>Удалить</button>
-                    <button>Изменить</button>
+                    <button>
+                        <a asp-action="DeleteProduct" asp-controller="MainPage" asp-route-productId="@product.Id">Delete</a>
+                    </button>
+                    <button>
+                        <a asp-action="ManageProduct" asp-controller="ProductManage" asp-route-productId="@product.Id">Change</a>
+                    </button>
                 </td>
             </tr>
         }
@@ -22,6 +27,6 @@
 </div>
 <div>
     <button>
-        <a asp-action="AddProduct" asp-controller="MainPage" asp-id="">Добавить</a>
+        <a asp-action="AddProduct" asp-controller="MainPage">Create</a>
     </button>
 </div>
